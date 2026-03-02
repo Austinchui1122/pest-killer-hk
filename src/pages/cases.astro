@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+
+const caseGroups = [
+	{
+		type: '床蝨 Bedbugs',
+		images: ['/images/cases/bedbug-1.jpg', '/images/cases/bedbug-2.jpg']
+	},
+	{
+		type: '老鼠 Rodents',
+		images: ['/images/cases/rat-1.jpg', '/images/cases/rat-2.jpg', '/images/cases/rat-3.jpg']
+	},
+	{
+		type: '白蟻 Termites',
+		images: ['/images/cases/termite-1.jpg', '/images/cases/termite-2.jpg']
+	},
+	{
+		type: '蟑螂 Cockroaches',
+		images: ['/images/cases/cockroach-1.jpg']
+	},
+	{
+		type: '潮濕蟲 Moisture Bugs',
+		images: ['/images/cases/moisture-bug.jpg']
+	},
+	{
+		type: '蜂巢 Wasp Nest',
+		images: ['/images/cases/wasp-1.jpg']
+	}
+];
+---
+
+<Base title="實際案例">
+	<section class="page-header">
+		<div class="container">
+			<h1>實際案例展示</h1>
+			<p>我們在全港各區處理的真實案例記錄</p>
+		</div>
+	</section>
+
+	<section class="cases-gallery">
+		<div class="container">
+			{caseGroups.map(group => (
+				<div class="case-group">
+					<h2 class="group-title">{group.type}</h2>
+					<div class="group-grid">
+						{group.images.map(img => (
+							<div class="img-container">
+								<img src={img} alt={group.type} loading="lazy" />
+							</div>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<style>
+		.page-header {
+			background: var(--primary);
+			color: white;
+			padding: 80px 0;
+			text-align: center;
+		}
+		.page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+		.page-header p { font-size: 1.2rem; opacity: 0.8; }
+
+		.cases-gallery {
+			padding: 60px 0;
+		}
+		.case-group {
+			margin-bottom: 60px;
+		}
+		.group-title {
+			color: var(--primary);
+			font-size: 1.8rem;
+			margin-bottom: 30px;
+			padding-bottom: 10px;
+			border-bottom: 2px solid var(--light-gray);
+		}
+		.group-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			gap: 20px;
+		}
+		.img-container {
+			height: 300px;
+			border-radius: 8px;
+			overflow: hidden;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+		}
+		.img-container img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.3s;
+		}
+		.img-container:hover img {
+			transform: scale(1.05);
+		}
+
+		@media (max-width: 768px) {
+			.group-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</Base>

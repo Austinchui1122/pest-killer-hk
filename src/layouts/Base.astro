@@ -1,0 +1,230 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "香港專業滅蟲公司 - 滅蟲職人，提供全港 24 小時滅蟲服務，包括床蝨、老鼠、白蟻、蟑螂等。" } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, "https://pestskillerhk.app");
+---
+
+<!doctype html>
+<html lang="zh-HK">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/images/logo-square.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | 滅蟲職人 Pest Killer HK</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/images/logo.png" />
+		<meta property="og:locale" content="zh_HK" />
+
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;500;700&display=swap" rel="stylesheet">
+
+		<style is:global>
+			:root {
+				--primary: #2e4c8c;
+				--secondary: #fff4e2;
+				--accent: #fa2d1a;
+				--text: #333;
+				--light-gray: #f5f5f5;
+			}
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-family: 'Noto Sans HK', sans-serif;
+				color: var(--text);
+				line-height: 1.6;
+				background-color: #fff;
+			}
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+			ul {
+				list-style: none;
+			}
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 20px;
+			}
+			.btn {
+				display: inline-block;
+				padding: 12px 30px;
+				border-radius: 5px;
+				font-weight: 700;
+				transition: 0.3s;
+				cursor: pointer;
+				border: none;
+			}
+			.btn-primary {
+				background-color: var(--accent);
+				color: white;
+			}
+			.btn-primary:hover {
+				background-color: #d12314;
+				transform: translateY(-2px);
+			}
+			header {
+				background: white;
+				box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+			}
+			nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				height: 80px;
+			}
+			.logo img {
+				height: 50px;
+				display: block;
+			}
+			.nav-links {
+				display: flex;
+				gap: 30px;
+			}
+			.nav-links a {
+				font-weight: 500;
+				color: var(--primary);
+			}
+			.nav-links a:hover {
+				color: var(--accent);
+			}
+			
+			footer {
+				background: var(--primary);
+				color: white;
+				padding: 60px 0 20px;
+			}
+			.footer-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 40px;
+				margin-bottom: 40px;
+			}
+			.footer-logo img {
+				height: 50px;
+				filter: brightness(0) invert(1);
+				margin-bottom: 20px;
+			}
+			.footer-info h4 {
+				margin-bottom: 20px;
+				font-size: 1.2rem;
+				border-left: 4px solid var(--accent);
+				padding-left: 10px;
+			}
+			.footer-info p {
+				margin-bottom: 10px;
+				opacity: 0.9;
+			}
+			.footer-bottom {
+				text-align: center;
+				padding-top: 20px;
+				border-top: 1px solid rgba(255,255,255,0.1);
+				font-size: 0.9rem;
+				opacity: 0.7;
+			}
+
+			.whatsapp-float {
+				position: fixed;
+				bottom: 30px;
+				right: 30px;
+				background-color: #25d366;
+				color: white;
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 30px;
+				box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+				z-index: 999;
+				transition: 0.3s;
+			}
+			.whatsapp-float:hover {
+				transform: scale(1.1);
+			}
+
+			@media (max-width: 768px) {
+				.nav-links {
+					display: none;
+				}
+				nav {
+					justify-content: center;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<nav>
+					<a href="/" class="logo">
+						<img src="/images/logo.png" alt="滅蟲職人 Logo" />
+					</a>
+					<ul class="nav-links">
+						<li><a href="/">首頁 Home</a></li>
+						<li><a href="/services">服務項目 Services</a></li>
+						<li><a href="/cases">實際案例 Cases</a></li>
+						<li><a href="/contact">聯絡我們 Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<slot />
+		</main>
+
+		<footer>
+			<div class="container">
+				<div class="footer-grid">
+					<div class="footer-info">
+						<div class="footer-logo">
+							<img src="/images/logo.png" alt="滅蟲職人 Logo" />
+						</div>
+						<p>專業滅蟲服務，為您提供潔淨、安全的居住與工作環境。</p>
+					</div>
+					<div class="footer-info">
+						<h4>聯絡資料 Contact</h4>
+						<p>電話/WhatsApp: 5445 8857</p>
+						<p>服務時間: 08:00 - 22:00</p>
+						<p>服務地區: 全香港</p>
+					</div>
+					<div class="footer-info">
+						<h4>服務項目 Services</h4>
+						<p>床蝨 / 老鼠 / 白蟻</p>
+						<p>蟑螂 / 蜂巢 / 潮濕蟲</p>
+						<p>商業及家居滅蟲方案</p>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<p>&copy; 2026 滅蟲職人 / 匠人潔淨社. All Rights Reserved.</p>
+				</div>
+			</div>
+		</footer>
+
+		<a href="https://wa.me/85254458857" class="whatsapp-float" target="_blank" aria-label="WhatsApp Contact">
+			<svg viewBox="0 0 32 32" width="32" height="32" fill="currentColor"><path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.39 0-.11-.243-.754-.43-1.29-.36-.851-.904-2.676-.984-2.73-.332-.227-.672-.31-1.09-.215-.33.073-.656.312-.898.553-.625.63-.915 1.375-.808 2.23.116.945.385 1.83.914 2.651.93 1.44 2.248 2.537 3.604 3.392.862.545 1.745.895 2.752 1.044.35.051.71.044 1.05-.054a3.733 3.733 0 0 0 2.047-1.35c.136-.142.542-.792.542-.907 0-.046-.078-.13-.225-.224-.014-.01-.26-.13-.43-.224-.146-.082-1.104-.646-1.143-.646zm-3.123 7.844l-.005.003c-2.296 0-4.53-.599-6.49-1.732l-.466-.273-4.815 1.262 1.283-4.693-.298-.475a11.39 11.39 0 0 1-1.74-6.023c0-6.28 5.11-11.39 11.39-11.39 6.28 0 11.388 5.11 11.388 11.39 0 6.28-5.11 11.39-11.388 11.39zM16 2a14 14 0 0 0-14 14c0 2.512.665 4.933 1.935 7.051L2 30l7.123-1.87A13.926 13.926 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2z"/></svg>
+		</a>
+	</body>
+</html>

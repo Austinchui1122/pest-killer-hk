@@ -1,0 +1,271 @@
+---
+import Base from '../layouts/Base.astro';
+
+const services = [
+	{ title: '蟑螂', icon: '🪳', desc: '專業處理各類蟑螂滋生問題。' },
+	{ title: '老鼠', icon: '🐭', desc: '全面勘查與封堵鼠患源頭。' },
+	{ title: '白蟻', icon: '🐜', desc: '專業藥劑處理，保護建築結構。' },
+	{ title: '床蝨', icon: '🛏️', desc: '高溫或藥劑處理，根治叮咬。' },
+	{ title: '蜂巢', icon: '🐝', desc: '安全移除各類蜂窩，避免受傷。' },
+	{ title: '潮濕蟲', icon: '🦟', desc: '針對環境潮濕引發的蟲害處理。' }
+];
+
+const reasons = [
+	{ title: '豐富經驗', text: '多年滅蟲經驗，處理過無數疑難雜症。' },
+	{ title: '安全藥劑', text: '選用政府註冊安全藥劑，對人體及寵物無害。' },
+	{ title: '透明報價', text: '收費公開透明，絕無隱藏收費。' },
+	{ title: '全港服務', text: '全港十八區皆有專人提供特快服務。' }
+];
+
+const cases = [
+	{ src: '/images/cases/bedbug-1.jpg', alt: '床蝨案例 1', type: '床蝨' },
+	{ src: '/images/cases/rat-1.jpg', alt: '老鼠案例 1', type: '老鼠' },
+	{ src: '/images/cases/termite-1.jpg', alt: '白蟻案例 1', type: '白蟻' },
+	{ src: '/images/cases/cockroach-1.jpg', alt: '蟑螂案例 1', type: '蟑螂' },
+	{ src: '/images/cases/wasp-1.jpg', alt: '蜂巢案例 1', type: '蜂巢' },
+	{ src: '/images/cases/moisture-bug.jpg', alt: '潮濕蟲案例', type: '潮濕蟲' }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "滅蟲職人 Pest Killer HK",
+  "image": "https://pestskillerhk.app/images/logo.png",
+  "@id": "https://pestskillerhk.app",
+  "url": "https://pestskillerhk.app",
+  "telephone": "+852 5445 8857",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "全香港",
+    "addressLocality": "Hong Kong",
+    "addressRegion": "HK",
+    "addressCountry": "CN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 22.3193,
+    "longitude": 114.1694
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "08:00",
+    "closes": "22:00"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "滅蟲服務一般需要幾耐？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般家居滅蟲大約需要 1-2 小時，視乎單位大小及蟲患嚴重程度而定。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "滅蟲後需要離開單位嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "視乎採用的方案。如果是採用噴灑藥劑，通常建議在處理後離開並通風 2-4 小時。"
+      }
+    }
+  ]
+};
+---
+
+<Base title="香港專業滅蟲服務">
+	<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+	<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+	<section class="hero">
+		<div class="container hero-content">
+			<h1>香港專業滅蟲服務</h1>
+			<p>Professional Pest Control in Hong Kong</p>
+			<a href="https://wa.me/85254458857" class="btn btn-primary">即時 WhatsApp 報價</a>
+		</div>
+	</section>
+
+	<section class="services">
+		<div class="container">
+			<h2 class="section-title">服務項目 <span>Services</span></h2>
+			<div class="services-grid">
+				{services.map(s => (
+					<div class="service-card">
+						<div class="service-icon">{s.icon}</div>
+						<h3>{s.title}</h3>
+						<p>{s.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="why-us">
+		<div class="container">
+			<h2 class="section-title">為何選我們 <span>Why Choose Us</span></h2>
+			<div class="reasons-grid">
+				{reasons.map(r => (
+					<div class="reason-card">
+						<h3>{r.title}</h3>
+						<p>{r.text}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="cases-preview">
+		<div class="container">
+			<h2 class="section-title">實際案例 <span>Recent Cases</span></h2>
+			<div class="cases-grid">
+				{cases.map(c => (
+					<div class="case-card">
+						<div class="case-img">
+							<img src={c.src} alt={c.alt} loading="lazy" />
+						</div>
+						<div class="case-type">{c.type}</div>
+					</div>
+				))}
+			</div>
+			<div style="text-align: center; margin-top: 40px;">
+				<a href="/cases" class="btn" style="border: 2px solid var(--primary); color: var(--primary);">查看更多案例</a>
+			</div>
+		</div>
+	</section>
+
+	<style>
+		.hero {
+			background: linear-gradient(rgba(46, 76, 140, 0.8), rgba(46, 76, 140, 0.9)), url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=2000') center/cover;
+			height: 500px;
+			display: flex;
+			align-items: center;
+			color: white;
+			text-align: center;
+		}
+		.hero-content h1 {
+			font-size: 3rem;
+			margin-bottom: 10px;
+		}
+		.hero-content p {
+			font-size: 1.5rem;
+			margin-bottom: 30px;
+			opacity: 0.9;
+		}
+
+		.section-title {
+			text-align: center;
+			margin: 60px 0 40px;
+			font-size: 2.2rem;
+			color: var(--primary);
+		}
+		.section-title span {
+			display: block;
+			font-size: 1rem;
+			text-transform: uppercase;
+			color: var(--text);
+			opacity: 0.6;
+			margin-top: 5px;
+		}
+
+		.services-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 30px;
+		}
+		.service-card {
+			background: white;
+			padding: 40px;
+			border-radius: 10px;
+			text-align: center;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+			transition: 0.3s;
+			border-bottom: 5px solid transparent;
+		}
+		.service-card:hover {
+			transform: translateY(-10px);
+			border-bottom: 5px solid var(--accent);
+		}
+		.service-icon {
+			font-size: 3rem;
+			margin-bottom: 20px;
+		}
+		.service-card h3 {
+			margin-bottom: 15px;
+			color: var(--primary);
+		}
+
+		.why-us {
+			background-color: var(--secondary);
+			padding: 60px 0;
+			margin-top: 60px;
+		}
+		.reasons-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			gap: 20px;
+		}
+		.reason-card {
+			background: white;
+			padding: 30px;
+			border-radius: 8px;
+		}
+		.reason-card h3 {
+			color: var(--accent);
+			margin-bottom: 10px;
+			font-size: 1.2rem;
+		}
+
+		.cases-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 20px;
+		}
+		.case-card {
+			position: relative;
+			overflow: hidden;
+			border-radius: 10px;
+			height: 250px;
+		}
+		.case-img {
+			width: 100%;
+			height: 100%;
+		}
+		.case-img img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: 0.5s;
+		}
+		.case-card:hover .case-img img {
+			transform: scale(1.1);
+		}
+		.case-type {
+			position: absolute;
+			bottom: 15px;
+			left: 15px;
+			background: var(--accent);
+			color: white;
+			padding: 5px 15px;
+			border-radius: 3px;
+			font-weight: 500;
+		}
+
+		@media (max-width: 768px) {
+			.hero-content h1 { font-size: 2rem; }
+			.hero-content p { font-size: 1.1rem; }
+		}
+	</style>
+</Base>

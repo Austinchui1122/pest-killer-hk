@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const posts = [
+	{ title: '床蝨處理完整指南', date: '2026-02-15', excerpt: '了解如何識別床蝨、處理流程及預防措施。', slug: 'bedbug-guide' },
+	{ title: '老鼠防範小貼士', date: '2026-02-10', excerpt: '從根源預防鼠患，保持家居環境衛生。', slug: 'rodent-tips' }
+];
+---
+
+<Base title="滅蟲資訊專欄">
+	<section class="page-header">
+		<div class="container">
+			<h1>滅蟲資訊專欄</h1>
+			<p>分享專業滅蟲知識與環境衛生建議</p>
+		</div>
+	</section>
+
+	<section class="blog-list">
+		<div class="container">
+			<div class="blog-grid">
+				{posts.map(post => (
+					<div class="blog-card">
+						<div class="blog-content">
+							<p class="blog-date">{post.date}</p>
+							<h2>{post.title}</h2>
+							<p>{post.excerpt}</p>
+							<a href={`/blog/${post.slug}`} class="read-more">閱讀更多 &rarr;</a>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<style>
+		.page-header {
+			background: var(--primary);
+			color: white;
+			padding: 80px 0;
+			text-align: center;
+		}
+		.page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+		.page-header p { font-size: 1.2rem; opacity: 0.8; }
+
+		.blog-list {
+			padding: 60px 0;
+		}
+		.blog-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+			gap: 30px;
+		}
+		.blog-card {
+			background: white;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+			border-top: 5px solid var(--accent);
+			transition: 0.3s;
+		}
+		.blog-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+		}
+		.blog-content {
+			padding: 40px;
+		}
+		.blog-date {
+			color: var(--accent);
+			font-weight: 700;
+			margin-bottom: 15px;
+			font-size: 0.9rem;
+		}
+		.blog-card h2 {
+			color: var(--primary);
+			margin-bottom: 15px;
+			font-size: 1.5rem;
+		}
+		.blog-card p {
+			margin-bottom: 25px;
+			color: #666;
+		}
+		.read-more {
+			font-weight: 700;
+			color: var(--primary);
+		}
+
+		@media (max-width: 768px) {
+			.blog-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</Base>

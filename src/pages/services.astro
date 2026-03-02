@@ -1,0 +1,165 @@
+---
+import Base from '../layouts/Base.astro';
+
+const services = [
+	{
+		title: '床蝨處理 Bedbugs Control',
+		desc: '床蝨（臭蟲）叮咬極為痕癢，我們採用高溫蒸氣及專業藥劑雙重處理，根治床蝨。',
+		steps: ['詳細勘察感染範圍', '高溫蒸氣消滅成蟲與卵', '噴灑長效殘留藥劑', '兩週後覆檢確認'],
+		images: ['/images/cases/bedbug-1.jpg', '/images/cases/bedbug-2.jpg']
+	},
+	{
+		title: '鼠患控制 Rodent Control',
+		desc: '針對商業及家居老鼠問題，採取環境封閉、誘餌設置及藥劑處理等多元方案。',
+		steps: ['鼠路勘察及排泄物清理', '封堵鼠患進入通道', '佈置專業毒餌或捕鼠器', '定期巡視及清理'],
+		images: ['/images/cases/rat-1.jpg', '/images/cases/rat-2.jpg', '/images/cases/rat-3.jpg']
+	},
+	{
+		title: '白蟻治理 Termite Control',
+		desc: '白蟻會嚴重破壞裝修及結構，專業噴灑或設置誘餌站是根除蟻群的關鍵。',
+		steps: ['專業儀器偵測蟻路', '於受影響區域噴灑藥劑', '設立白蟻監測/誘餌站', '全屋預防噴灑'],
+		images: ['/images/cases/termite-1.jpg', '/images/cases/termite-2.jpg']
+	}
+];
+---
+
+<Base title="服務項目">
+	<section class="page-header">
+		<div class="container">
+			<h1>專業服務項目</h1>
+			<p>我們提供全方位的滅蟲與環境衛生解決方案</p>
+		</div>
+	</section>
+
+	<section class="services-list">
+		<div class="container">
+			{services.map((s, index) => (
+				<div class={`service-item ${index % 2 !== 0 ? 'reverse' : ''}`}>
+					<div class="service-content">
+						<h2>{s.title}</h2>
+						<p>{s.desc}</p>
+						<div class="steps">
+							<h3>處理流程：</h3>
+							<ul>
+								{s.steps.map(step => (
+									<li>{step}</li>
+								))}
+							</ul>
+						</div>
+					</div>
+					<div class="service-gallery">
+						<div class="main-img">
+							<img src={s.images[0]} alt={s.title} />
+						</div>
+						<div class="sub-imgs">
+							{s.images.slice(1).map(img => (
+								<img src={img} alt={s.title} />
+							))}
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section class="cta-section">
+		<div class="container">
+			<h2>預約上門檢查？</h2>
+			<p>專業團隊快速跟進，全港 18 區服務。</p>
+			<a href="/contact" class="btn btn-primary">立即聯絡 Contact Us</a>
+		</div>
+	</section>
+
+	<style>
+		.page-header {
+			background: var(--primary);
+			color: white;
+			padding: 80px 0;
+			text-align: center;
+		}
+		.page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+		.page-header p { font-size: 1.2rem; opacity: 0.8; }
+
+		.services-list {
+			padding: 60px 0;
+		}
+		.service-item {
+			display: flex;
+			gap: 60px;
+			align-items: center;
+			margin-bottom: 80px;
+		}
+		.service-item.reverse {
+			flex-direction: row-reverse;
+		}
+		.service-content {
+			flex: 1;
+		}
+		.service-content h2 {
+			color: var(--primary);
+			margin-bottom: 20px;
+			font-size: 1.8rem;
+			border-bottom: 3px solid var(--accent);
+			display: inline-block;
+			padding-bottom: 5px;
+		}
+		.service-content p {
+			margin-bottom: 25px;
+			font-size: 1.1rem;
+		}
+		.steps h3 {
+			font-size: 1.1rem;
+			margin-bottom: 10px;
+		}
+		.steps ul li {
+			position: relative;
+			padding-left: 25px;
+			margin-bottom: 8px;
+		}
+		.steps ul li::before {
+			content: '✓';
+			position: absolute;
+			left: 0;
+			color: var(--accent);
+			font-weight: bold;
+		}
+
+		.service-gallery {
+			flex: 1;
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+			gap: 10px;
+			height: 400px;
+		}
+		.service-gallery img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 5px;
+		}
+		.sub-imgs {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.cta-section {
+			background: var(--secondary);
+			text-align: center;
+			padding: 80px 0;
+		}
+		.cta-section h2 { margin-bottom: 15px; font-size: 2rem; }
+		.cta-section p { margin-bottom: 30px; font-size: 1.2rem; }
+
+		@media (max-width: 992px) {
+			.service-item, .service-item.reverse {
+				flex-direction: column;
+				gap: 30px;
+			}
+			.service-gallery {
+				width: 100%;
+				height: 300px;
+			}
+		}
+	</style>
+</Base>
